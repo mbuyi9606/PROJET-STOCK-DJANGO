@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!---------------------------------------------->
+<style>
+    .title-index{
+        padding: 2%;
+        font-size: 50px;
+        text-transform: capitalize;
+        font-family: sans-serif;
+        border-bottom: 1px solid silver;
+        position: sticky;
+        top: 0px;
+        background-color: white;
+    }
+    .sub-title-catgorie{
+        display: flex;
+        padding-bottom: 2%;
+    }
+    .sub-title-catgorie .div1{
+        width: 50%;
+    }
+    .sub-title-catgorie .div2 div{
+        padding: 3% 4%;
+        font-family: sans-serif;
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+    .sub-title-catgorie .div1 .image{
+        padding:20%  4%;
+        border-radius: 5px;
+        background-color: green;
+        margin-top: 4%;
+        margin-bottom: 3%;
+    }
+
+    .sub-title-catgorie .div2{
+        padding: 10% 0%;
+        width: 35%;
+        margin-left: 4%;
+    }
+    .sub-title-catgorie .div1 div button{
+        padding: 2% 3%;
+        margin: 0% 3%;
+        border: 0px;
+        border-radius: 3px;
+        font-family: sans-serif;
+        font-size: 17px;
+        text-transform: capitalize;
+        color: white;
+    }
+
+    .liste-article-categorie{
+        padding: 2%;
+        border-top: 1px solid silver;
+    }
+    .liste-article-categorie div{
+        background-color: #f8f4f4;
+        padding: 1% 2%;
+        margin: 0.5% 0%;
+        font-family: sans-serif;
+        font-size: 17px;
+        text-transform: capitalize;
+    }
+
+    .table-categorie{
+        width: 100%;
+    }
+    .table-categorie tr{
+        font-family: sans-serif;
+        text-align: left;
+        font-size: 15px;
+        text-transform: capitalize;
+    }
+    .table-categorie th{
+        background-color: #f5f1f1;
+        padding: 1% 1%;
+    }
+     .table-categorie td{
+        padding: 1% 1%;
+    }
+     .table-categorie tr:hover{
+         background-color: #faf8f8;
+     }
+
+
+</style>
+<!---------------------------------------------->
+
+
+<div class="title-index">
+    <span>categorie</span>
+</div>
+
+
+<div class="sub-title-catgorie">
+    <div class="div1">
+
+        <div class="image"></div>
+        <div>
+            <a href="{% url 'delete_categorie_confirm' categorie.id %}"><button style="background-color: green">suprimer</button></a>
+            <a href="{% url 'add_categorie' %}"><button style="background-color: red">ajouter</button></a>
+            <a href="{% url 'modification_categorie' categorie.id %}"><button style="background-color: green">modifier</button></a>
+        </div>
+    </div>
+    <div class="div2">
+        <div>
+            <span>designation : {{categorie.designation}}</span><br>
+            <span>description : {{categorie.description}}</span>
+        </div>
+
+    </div>
+</div>
+<div class="liste-article-categorie">
+
+    <table class="table-categorie">
+        <tr>
+            <th>n°</th>
+            <th>référence</th>
+            <th>désignation</th>
+            <th>prix achat</th>
+            <th>prix de vente</th>
+            <th>stock min</th>
+            <th>stock max</th>
+        </tr>
+        {% for art in article %}
+        <tr>
+            <td>{{art.id}}</td>
+            <td>{{art.reference}}</td>
+            <td>{{art.designation}}</td>
+            <td>{{art.prixAchat}}</td>
+            <td>{{prixVente}}</td>
+            <td>{{art.stockmin}}</td>
+            <td>{{art.stockmax}}</td>
+        </tr>
+         {% endfor %}
+    </table>
+
+</div>
+
+
+
+{% endblock %}

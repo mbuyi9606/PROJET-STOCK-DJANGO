@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!---------------------------------------------->
+<style>
+    .title-index{
+        padding: 2%;
+        font-size: 50px;
+        text-transform: capitalize;
+        font-family: sans-serif;
+        border-bottom: 1px solid silver;
+        position: sticky;
+        top: 0%;
+        background-color: white;
+    }
+
+    .content-form-categorie{
+        padding: 2%;
+        display: flex;
+    }
+    .content-form-categorie .div1{
+        width: 60%;
+        text-align: left;
+    }
+    .content-form-categorie .content-add-categorie{
+        width: 86%;
+        padding: 2%;
+        text-align: left;
+    }
+    .content-form-categorie .image{
+        background-color: green;
+        padding:30% 2%;
+        width: 100%;
+        border-radius: 5px;
+    }
+    .content-form-categorie input{
+        width: 100%;
+        font-family: sans-serif;
+        font-size: 17px;
+        padding: 1.5% 1%;
+        border-radius: 2px;
+        margin-bottom: 1%;
+        border: 1px solid silver;
+    }
+    .content-form-categorie textarea{
+        width:97%;
+        font-family: sans-serif;
+        font-size: 17px;
+        height: 10vh;
+        padding:1% 2.5%;
+        border-radius: 2px;
+        margin-bottom: 1%;
+        border: 1px solid silver;
+    }
+      .content-add-categorie select{
+        width: 102.5%;
+        padding: 1.5%;
+        font-size: 17px;
+        font-family: sans-serif;
+        border-radius: 2px;
+        margin-bottom: 1%;
+        text-transform: capitalize;
+        border: 1px solid silver;
+    }
+    .content-form-categorie button{
+        padding: 2%;
+        font-family: sans-serif;
+        font-size: 17px;
+        border-radius: 3px;
+        border: 0px;
+        color: white;
+    }
+
+    .content-form-categorie .div2{
+        padding:5% 1%;
+        text-align: center;
+        width: 30%;
+    }
+    .div2 .title-categorie-liste{
+        font-family: sans-serif;
+        font-size: 25px;
+        text-transform: capitalize;
+        border-bottom: 1px solid silver;
+        padding-bottom: 6%;
+        margin-bottom: 2%;
+    }
+
+
+    .div2 .content-div2 div{
+        text-align: left;
+        padding: 4% 3%;
+        border-radius: 3px;
+        background-color: silver;
+        margin: 1%;
+        text-transform: capitalize;
+    }
+    .div2 .content-div2 div:hover{
+        background-color: #a2a0a0;
+    }
+
+
+</style>
+<!---------------------------------------------->
+
+
+<div class="title-index">
+    <span>{{article.designation}}</span>
+</div>
+
+<div class="content-form-categorie">
+    <div class="div1">
+
+    <div class="content-add-categorie">
+        <form action="" method="POST">
+            {%csrf_token%}
+            <input type="text" required="required" name="reference" placeholder="reference :" value="{{article.reference}}"><br>
+            <input type="text" required="required" name="designation" placeholder="designation :" value="{{article.designation}}"><br>
+            <input type="number" required="required" name="prixAchat" placeholder="prix d'achat :" value="{{article.prixAchat}}"><br>
+            <input type="number" required="required" name="prixVente" placeholder="prix de vente :" value="{{article.prixVente}}"><br>
+            <input type="number" required="required" name="stockmin" placeholder="stock minimum :" value="{{article.stockmin}}"><br>
+            <input type="number" required="required" name="stockmax" placeholder="stock maximum :" value="{{article.stockmax}}"><br>
+            <select id="" name="categorie">
+                <option value="" >categories</option>
+                {% for c in categorie %}
+                <option value="{{article.stockmax}}">{{c.designation}}</option>
+                {% endfor %}
+            </select>
+            <textarea name="description" required="required" id="description" cols="30" rows="6" value="{{article.description}}" placeholder="Description">
+            </textarea><br>
+            <button type="submit" style="background-color: darkslategray">enregistrer</button>
+            <a href="{% url 'liste_article' %}"><button  style="background-color: green">anuler</button></a>
+        </form>
+    </div>
+    </div>
+    <div class="div2">
+        <div class="title-categorie-liste">image</div>
+            <div class="image">
+            <input type="file" alt="image">
+            </div>
+
+    </div>
+</div>
+
+{% endblock %}

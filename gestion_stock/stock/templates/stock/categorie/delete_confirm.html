@@ -1,0 +1,61 @@
+<style>
+    .container-delete-categorie{
+        margin:10% 30%;
+        text-align: center;
+        padding: 3% 0%;
+        border-radius: 5px;
+    }
+    .container-delete-categorie .title{
+        background-color: darkslategray;
+        padding: 5%;
+        border-top-right-radius: 7px;
+        color: white;
+        text-transform: capitalize;
+        font-family: sans-serif;
+        font-size: 20px;
+        border-top-left-radius: 7px;
+    }
+    .container-delete-categorie .content{
+        padding: 7% 0%;
+        font-family: sans-serif;
+        font-size: 17px;
+        border: 1px solid silver;
+    }
+    .container-delete-categorie .button{
+        padding: 2%;
+        font-family: sans-serif;
+        font-size: 15px;
+        margin:0% 2%;
+        border: 0px;
+        border-radius: 4px;
+        text-transform: capitalize;
+        color: white;
+    }
+    .container-delete-categorie .footer{
+        background-color: #e9eeee;
+        border-bottom: 1px solid silver;
+        border-right: 1px solid silver;
+        border-left: 1px solid silver;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+        padding: 5%;
+    }
+    .container-delete-categorie .button:hover{
+        background-color: darkslategray;
+    }
+</style>
+
+
+
+<div class="container-delete-categorie">
+    <div class="title">
+        <span>confirmation</span>
+    </div>
+    <div class="content">
+        <span>êtes-vous vraiment sûr de vouloir <br> suprimer cette categorie?</span>
+    </div>
+    <div class="footer">
+        <a href="{% url 'supression_categorie' categorie.id %}"><button class="button" style="background-color: red">suprimer</button></a>
+        <a href="{% url 'index' %}"><button class="button" style="background-color: darkslategray">annuler</button></a>
+    </div>
+</div>

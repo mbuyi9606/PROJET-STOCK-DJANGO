@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!---------------------------------------------->
+<style>
+    .title-index{
+        padding: 2%;
+        font-size: 50px;
+        text-transform: capitalize;
+        font-family: sans-serif;
+        border-bottom: 1px solid silver;
+        position: sticky;
+        top: 0px;
+        background-color: white;
+    }
+    .content-article table{
+        width: 100%;
+        padding: 1% 0%;
+        font-size: 15px;
+        font-family: sans-serif;
+        text-transform: capitalize;
+    }
+    .content-article th{
+        background-color: #f1f6f6;
+        padding: 1% 0.5%;
+        text-align: left;
+    }
+     .content-article td{
+        padding: 1% 0.5%;
+        text-align: left;
+    }
+     .content-article tr:hover{
+         background-color: #f8fafa;
+     }
+      .content-article .add-article{
+        background-color: darkslategray;
+        width: 5%;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 30px;
+        color: white;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        position: fixed;
+        right: 2%;
+        bottom: 10%;
+    }
+     .content-article .add-article:hover{
+        background-color: #162c2c;
+    }
+
+</style>
+<!---------------------------------------------->
+
+
+<div class="title-index">
+    <span>article</span>
+</div>
+<div class="content-article">
+    <table>
+        <tr>
+            <th>n°</th>
+            <th>référence</th>
+            <th>désignation</th>
+            <th>categorie</th>
+            <th>prix achat</th>
+            <th>prix vente</th>
+            <th>stock min</th>
+            <th>stock max</th>
+        </tr>
+        {% for art in article %}
+        <tr>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.id}}</a></td>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.reference}}</a></td>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.designation}}</a></td>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.categorie}}</a></td>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.prixAchat}}</a></td>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.prixVente}}</a></td>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.stockmin}}</a></td>
+            <td><a href="{% url 'detail_articles' art.id %}">{{art.stockmax}}</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+<a href="{% url 'add_article' %}"><div class="add-article">+</div></a>
+</div>
+
+
+{% endblock %}

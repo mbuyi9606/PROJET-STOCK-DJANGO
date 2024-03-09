@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stock/style.css' %}">
+
+    <style>
+        body{
+            margin: 0% ;
+        }
+        .container{
+            display: flex;
+        }
+
+        .sidebar{
+            background-color: darkslategray;
+            padding: 2%;
+            width: 20%;
+            height: 100vh;
+            text-align: center;
+            position: fixed;
+        }
+        .sidebar .title{
+            color: silver;
+            padding-bottom: 5%;
+            text-transform: capitalize;
+            font-family: Impact;
+            padding-top: 20%;
+            border-bottom: 1px solid silver;
+            font-size: 35px;
+        }
+
+        .sidebar .footer{
+            position: absolute;
+            bottom: 2%;
+            text-align: left;
+            text-transform: capitalize;
+            font-style: italic;
+        }
+        .sidebar .option{
+            text-align: left;
+            background-color: silver;
+            margin: 4% 2%;
+            padding: 3%;
+            font-size: 17px;
+            border-radius: 3px;
+            text-transform: capitalize;
+            font-style: normal;
+            font-family: sans-serif;
+        }
+        .sidebar .option:hover{
+            background-color: #9d9797;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .content{
+            padding: 2%;
+            width: 80%;
+            margin-left: 24%;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="sidebar">
+
+        <div class="title">stock manager</div>
+        <a href="{% url 'index' %}"><div class="option">categorie</div></a>
+        <a href="{% url 'liste_stock' %}"><div class="option">stock</div></a>
+        <a href="{% url 'liste_article' %}"><div class="option">article</div></a>
+
+
+        <div class="footer">tech-makanda-service@ <br> team workers</div>
+
+    </div>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</div>
+
+
+</body>
+
+</html>

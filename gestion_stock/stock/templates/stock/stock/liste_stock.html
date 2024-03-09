@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!---------------------------------------------->
+<style>
+    .title-index{
+        padding: 2%;
+        font-size: 50px;
+        text-transform: capitalize;
+        font-family: sans-serif;
+        border-bottom: 1px solid silver;
+        position: sticky;
+        top: 0px;
+        background-color: white;
+    }
+    .content-index{
+        padding: 2%;
+    }
+    .option-index{
+        display: flex;
+        margin: 1% 0%;
+    }
+    .content-index .image{
+        padding: 4%;
+        background-color: green;
+        width: 5%;
+        border-top-left-radius: 10%;
+        border-bottom-left-radius: 10%;
+    }
+    .content-index .descritpion{
+        padding: 2% 2%;
+        background-color: rgba(246, 244, 244, 0.99);
+        width: 84%;
+        text-transform: capitalize;
+        border-top-right-radius: 5%;
+        border-bottom-right-radius: 5%;
+        font-family: sans-serif;
+    }
+    .content-index .descritpion:hover{
+        background-color: #e7e4e4;
+    }
+
+    .content-index .add-categorie{
+        background-color: darkslategray;
+        width: 5%;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 30px;
+        color: white;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        position: fixed;
+        right: 2%;
+        bottom: 10%;
+    }
+    .content-index .add-categorie:hover{
+        background-color: #162c2c;
+    }
+
+    .qt{
+        float: right;
+        font-family: sans-serif;
+        text-transform: capitalize;
+        font-size: 20px;
+        font-style: italic;
+    }
+     .archive{
+        font-size: 17px;
+        background-color: darkslategray;
+        color: silver;
+        border: 0px;
+        padding: 1%;
+        float: right;
+        text-transform: capitalize;
+        border-radius: 5px;
+         font-family: sans-serif;
+    }
+</style>
+<!---------------------------------------------->
+
+
+<div class="title-index">
+    <span>stock</span>
+    <a href="{% url 'historique' %}"><button class="archive">historique</button></a>
+</div>
+
+<div class="content-index">
+    {% for c in stock %}
+    <a href="">
+         <div class="option-index">
+        <div class="image"></div>
+        <div class="descritpion"><b>{{c.article__designation}}</b>
+            <span class="qt">{{c.quantite}}pieces</span>
+        </div>
+    </div>
+    </a>
+
+    {% endfor %}
+
+    <a href="{% url 'add_stock' %}"><div class="add-categorie">+</div></a>
+</div>
+
+{% endblock %}

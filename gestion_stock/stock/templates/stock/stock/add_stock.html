@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!---------------------------------------------->
+<style>
+    .title-index{
+        padding: 2%;
+        font-size: 50px;
+        text-transform: capitalize;
+        font-family: sans-serif;
+        border-bottom: 1px solid silver;
+    }
+
+    .content-form-categorie{
+        padding: 2%;
+        display: flex;
+    }
+    .content-form-categorie .div1{
+        width: 70%;
+        text-align: left;
+    }
+    .content-form-categorie .content-add-categorie{
+        width: 79%;
+        padding: 2%;
+        text-align: left;
+    }
+    .content-form-categorie .image{
+        background-color: green;
+        padding:13% 2%;
+        width: 82%;
+        border-radius: 5px;
+    }
+    .content-form-categorie input{
+        width: 100%;
+        font-family: sans-serif;
+        font-size: 17px;
+         border: 1px solid silver;
+        padding: 1.5% 1%;
+        border-radius: 5px;
+        margin-bottom: 1%;
+    }
+    .content-form-categorie textarea{
+        width:97%;
+        font-family: sans-serif;
+        font-size: 17px;
+         border: 1px solid silver;
+        padding: 2.5%;
+        border-radius: 5px;
+        margin-bottom: 1%;
+    }
+    .content-form-categorie button{
+        padding: 2%;
+        font-family: sans-serif;
+        font-size: 17px;
+        border-radius: 3px;
+        border: 0px;
+        color: white;
+    }
+
+    .content-form-categorie .div2{
+        padding:10% 1%;
+        text-align: center;
+        width: 26%;
+    }
+    .div2 .title-categorie-liste{
+        font-family: sans-serif;
+        font-size: 25px;
+        text-transform: capitalize;
+        border-bottom: 1px solid silver;
+        padding-bottom: 6%;
+        margin-bottom: 2%;
+    }
+
+    .div2 .content-div2{
+        height: 10vh;
+    }
+    .div2 .content-div2 div{
+        text-align: left;
+        padding: 4% 3%;
+        border-radius: 3px;
+        background-color: silver;
+        margin: 1%;
+        text-transform: capitalize;
+    }
+    .div2 .content-div2 div:hover{
+        background-color: #a2a0a0;
+    }
+    select{
+        width: 103%;
+        border: 1px solid silver;
+        font-family: sans-serif;
+        font-size: 17px;
+        border-radius: 5px;
+        padding: 2%;
+        margin-bottom: 1%;
+        text-transform: capitalize;
+    }
+
+</style>
+<!---------------------------------------------->
+
+
+<div class="title-index">
+    <span>stock</span>
+</div>
+
+<div class="content-form-categorie">
+    <div class="div1">
+        <div class="image">
+            <input type="file" alt="image">
+        </div>
+    <div class="content-add-categorie">
+        <form action="{% url 'add_stock_data' %}" method="POST">
+            {%csrf_token%}
+            <select name="article" id="">
+                <option value="">article</option>
+                {% for art in article %}
+                <option value="{{art.id}}">{{art.designation}}</option>
+                {% endfor %}
+            </select>
+            <input type="text" required="required" name="mouvement" placeholder="mouvement :"><br>
+            <input type="number" required="required" name="quantite" placeholder="quantité :"><br>
+            <button type="submit" style="background-color: darkslategray">enregistrer</button>
+            <a href=""><button  style="background-color: green">anuler</button></a>
+        </form>
+    </div>
+    </div>
+    <div class="div2">
+        <div class="title-categorie-liste">articles</div>
+
+        <div class="content-div2">
+            {% for art in article %}
+            <div>{{art.designation}}</div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
